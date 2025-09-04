@@ -11,7 +11,7 @@ export default function SearchBar() {
  
   // This will be logged on the server during the initial render
   // and on the client on subsequent navigations.
-  console.log(search)
+  // console.log(search)
  
   function handleSubmit(e){
     e.preventDefault;

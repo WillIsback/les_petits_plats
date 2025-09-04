@@ -1,51 +1,36 @@
+.filtersnstagsbox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .filterselector{
     display: flex;
     flex-direction: row;
     width: 100%;
+    gap: 65px;
+
 }
 
-.detailselector {
+.tagfilterbar{
     display: flex;
-    flex-direction: column;
-    width: 195px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
     height: auto;
-    padding: 17px 16px;
-    border-radius: 11px;
-    background: #FFF;
-
+    gap: 60px;
 }
 
-.detailselector aside {
-    color: var(--Black, #1B1B1B);
+.filtertag {
+    display: flex;
+    width: 195px;
+    height: 53px;
+    padding: 17px 18px;
+    align-items: center;
+
+    border-radius: 10px;
+    background: #FFD15B;
+    color: black;
+    font-size: 14px;
     font-family: var(--font-manrope);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    list-style: none;
-
-}
-
-.detailselector summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-}
-
-.detailselector summary::-webkit-details-marker,
-.detailselector summary::marker {
-    display: none;
-    content: "";
-}
-
-.chevron {
-    margin-left: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.listitem {
-    margin-top: 14px;
-
 }

@@ -2,8 +2,7 @@ import styles from './CardRecette.module.css'
 import ListItem from '@components/ListItem/ListItem'
 
 export default function CardRecette (props) {
-    const { image, name, servings, ingredients,
-        time, description, appliance, ustensils } = props;
+    const { image, name, ingredients, time, description } = props;
     const imgpath = "/images/recipes/"
 
     return <article className={styles.carterecette}>

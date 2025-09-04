@@ -1,0 +1,114 @@
+.searchbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchbar {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 163px;
+    height: 36px;
+    border-radius: 2px;
+    border: 1px solid var(--Light-Grey, #C6C6C6);
+    background: none;
+    margin-top: 14px;
+    margin-left: 16px;
+}
+
+.input {
+    color: var(--Grey, #7A7A7A);
+    font-family: var(--font-manrope);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: none;
+    border: none;
+    /* flex: 1; */
+    height: 100%;
+    padding-left: 5px;
+}
+
+.input:focus{
+    outline: none;
+}
+
+
+.clearButton{
+    position: absolute;
+    right: 30px;
+    background: none;
+    border: none;
+    color: darkgray;
+    font-size: 8px;
+}
+
+.searchbaricon{
+    position: absolute;
+    right: 5px;
+    color: darkgray;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    overflow-y: hidden;
+    max-height: 215px;
+}
+
+
+.results li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: var(--Black, #1B1B1B);
+    font-family: var(--font-manrope);
+    font-size: 14px;
+    width: 100%;
+    height: 37px;
+    padding-left: 16px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.results li:hover {
+    background: var(--Yellow, #FFD15B);
+    cursor: pointer;
+}
+
+.itemSelected {
+    background: var(--Yellow, #FFD15B);
+    font-weight: bold;
+}
+
+.itemNotselected {
+    background: none;
+    font-weight: 400;
+}
+
+.results button {
+    align-items: center;
+    background: none;
+    border: none;
+    padding-right: 14px;
+    cursor: pointer;
+
+}
+
+.removeicone {
+    color: black;
+    font-size: 17px;
+}
+
+.btnhidden {
+    display: none;
+}
+
+
