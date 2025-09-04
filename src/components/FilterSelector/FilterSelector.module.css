@@ -1,0 +1,51 @@
+.filterselector{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.detailselector {
+    display: flex;
+    flex-direction: column;
+    width: 195px;
+    height: auto;
+    padding: 17px 16px;
+    border-radius: 11px;
+    background: #FFF;
+
+}
+
+.detailselector aside {
+    color: var(--Black, #1B1B1B);
+    font-family: var(--font-manrope);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+
+}
+
+.detailselector summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.detailselector summary::-webkit-details-marker,
+.detailselector summary::marker {
+    display: none;
+    content: "";
+}
+
+.chevron {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.listitem {
+    margin-top: 14px;
+
+}

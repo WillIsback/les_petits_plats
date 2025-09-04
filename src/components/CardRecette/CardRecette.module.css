@@ -1,0 +1,103 @@
+.carterecette {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    height: 731px;
+    border-radius: 21px;
+    background: #FFF;
+    box-shadow: 0 4px 34px 30px rgba(0, 0, 0, 0.04);
+}
+
+.imgcontainer {
+    position: relative;
+    width: 380px;
+    height: 253px;
+}
+
+.imgcontainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+}
+
+.imgcontainer time {
+    position: absolute;
+    top: 21px;
+    right: 22px;
+    background: var(--Yellow, #FFD15B);
+    padding: 8px 16px;
+    border-radius: 12px;
+    /* style du texte du timer */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:black;
+    color: var(--Black, #1B1B1B);
+    text-align: center;
+    font-family: var(--font-manrope);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cardbody {
+    padding: 25px;
+}
+.cardbody h2 {
+    color: #000;
+    font-family: var(--font-anton);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 7px;
+}
+
+.cardbody h3 {
+    color: var(--Grey, #7A7A7A);
+    font-family: var(--font-manrope);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.08px;
+    margin-top: 32px;
+}
+.rescettedescription {
+    position: relative;
+    color: var(--Black, #1B1B1B);
+    font-family: var(--font-manrope);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 15px;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; 
+    overflow: hidden;
+    max-height: 95px;     
+}
+
+.rescettedescription::after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 1.2em;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+}
+
+.itembox {
+    display: flex;
+    flex-wrap: wrap;           /* Permet le retour à la ligne */
+    gap: 24px;   
+    margin-top: 15px;              /* Espace entre les colonnes et lignes */
+}
