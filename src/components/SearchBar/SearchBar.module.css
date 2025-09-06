@@ -1,5 +1,6 @@
 .form {
     display: flex;
+    position: relative;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
@@ -30,7 +31,7 @@
     outline: none;
 }
 
-.form button {
+.searchbutton {
     width: 51px;
     height: 52px;
     margin: 10px;
@@ -38,7 +39,7 @@
     background: var(--Black, #1B1B1B);
 }
 
-.form button:hover {
+.searchbutton:hover {
     background: var(--Yellow, #FFD15B);
     .searchbaricon{
         color: black;
@@ -49,4 +50,17 @@
     align-self: center;
     color: white;
     font-size: 28px;
+}
+
+
+.clearButton{
+    background:  none;
+    position: absolute;
+    right: 75px;
+    background: none;
+    border: none;
+    color: darkgray;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
 }

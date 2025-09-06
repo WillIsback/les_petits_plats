@@ -3,7 +3,7 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { useEffect } from "react";
 import styles from './SearchBar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';   
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';   
 import { useForm } from "react-hook-form"
 
 
@@ -12,6 +12,7 @@ export default function SearchBar() {
     register, 
     handleSubmit,
     setValue,
+    watch,
   } = useForm();
 
   const searchParams = useSearchParams(); 
@@ -42,6 +43,12 @@ export default function SearchBar() {
     // Naviguer avec les nouveaux paramètres
     router.push(`${pathname}?${params.toString()}`);
   }
+  const clearSearch = () => {
+      setValue('');
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete('search');
+      router.push('/');
+  };
 
   return <form action="" 
       className={styles.form}
@@ -53,8 +60,18 @@ export default function SearchBar() {
         placeholder="Rechercher une recette, un ingredient"
         defaultValue={''}
         className={styles.input}
+        autoComplete="off"
       />
-      <button type="submit" className={styles.button}>
+      {(watch().search.length>0) && (
+      <button 
+        type="button"
+        onClick={clearSearch}
+        className={styles.clearButton}
+      >
+        <FontAwesomeIcon icon={faXmark} />
+      </button>
+      )}
+      <button type="submit" className={styles.searchbutton}>
         <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchbaricon} />
       </button>
     </form>
