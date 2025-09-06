@@ -44,10 +44,10 @@ export default function SearchBar() {
     router.push(`${pathname}?${params.toString()}`);
   }
   const clearSearch = () => {
-      setValue('');
-      const params = new URLSearchParams(searchParams.toString());
+      setValue('search', '');
+      const params = new URLSearchParams(searchParams.toString())
       params.delete('search');
-      router.push('/');
+      router.replace('/');
   };
 
   return <form action="" 
@@ -62,7 +62,7 @@ export default function SearchBar() {
         className={styles.input}
         autoComplete="off"
       />
-      {(watch().search.length>0) && (
+      {((watch().search?.length>0) || false) && (
       <button 
         type="button"
         onClick={clearSearch}
