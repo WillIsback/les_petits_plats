@@ -10,9 +10,12 @@ export default function FilterList (props) {
     const { items, onAddFilter, onRemoveFilter, selectedFilters, category } = props;
     const [filteredItems, setFilteredItems] = useState(items || []);
     const [searchValue, setSearchValue] = useState('');
-
     const actualSelectedFilters = selectedFilters[category];
 
+    useEffect(() => {
+        setFilteredItems(items || []);
+    }, [items]);
+    
     const handleOnChange = (e) => {
         const value = e.target.value;
         setSearchValue(value);

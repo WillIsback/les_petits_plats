@@ -101,3 +101,7 @@
     gap: 24px;   
     margin-top: 15px;              /* Espace entre les colonnes et lignes */
 }
+
+.highlight {
+    font-style: italic;
+}

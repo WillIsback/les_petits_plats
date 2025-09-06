@@ -30,3 +30,10 @@
   padding: 10px;
 
 }
+
+.errorMessage {
+  color: black;
+  font-family: var(--font-manrope);
+  font-size: 21px;
+  font-weight: 400;
+}

@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from './Header.module.css';
 import SearchBar from "@components/SearchBar/SearchBar";
 
+export const dynamic = 'force-dynamic'
+
 export default function Header () {
     return <div className={styles.header}>
             <h1 className={styles.logo}>

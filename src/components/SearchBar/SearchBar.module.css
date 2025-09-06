@@ -26,6 +26,10 @@
     line-height: normal;
 }
 
+.form input:focus {
+    outline: none;
+}
+
 .form button {
     width: 51px;
     height: 52px;

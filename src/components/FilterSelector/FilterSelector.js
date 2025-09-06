@@ -1,11 +1,12 @@
 "use client";
-import { useState} from 'react';
 import styles from './FilterSelector.module.css'
 import DropDown from '@components/DropDown/DropDown';
 
 
 export default function FilterSelector (props) {
   const { recettes, selectedFilters, onAddFilter, onRemoveFilter  } = props
+
+
 
   const processRecipeData = (recettes) => {
     const cleanList = (items, keyExtractor = item => item) => {
@@ -36,7 +37,7 @@ export default function FilterSelector (props) {
     };
   };
 
-  const cleanedData = processRecipeData(recettes);
+  const cleanedData = processRecipeData(recettes)
   const dropdownsData = [
     {
       type: 'Ingrédients',
@@ -55,21 +56,25 @@ export default function FilterSelector (props) {
     }
   ];
 
+  const nbRecettes = recettes.length;
 
   return <div className={styles.filtersnstagsbox}>
   {/* DropDown */}
-  <div className={styles.filterselector}>
-    {dropdownsData.map((dropdown) => (
-      <DropDown 
-        key={dropdown.key}
-        items={dropdown.items}
-        type={dropdown.type}
-        category={dropdown.key}
-        onAddFilter={onAddFilter}
-        onRemoveFilter={onRemoveFilter}
-        selectedFilters={selectedFilters}
-      />
-    ))}
+  <div className={styles.selector_counter_box}>
+    <div className={styles.filterselector}>
+      {dropdownsData.map((dropdown) => (
+        <DropDown 
+          key={dropdown.key}
+          items={dropdown.items}
+          type={dropdown.type}
+          category={dropdown.key}
+          onAddFilter={onAddFilter}
+          onRemoveFilter={onRemoveFilter}
+          selectedFilters={selectedFilters}
+        />
+      ))}
+    </div>
+    <section name="Recettes_displayed" className={styles.counter}>{nbRecettes} recettes</section>
   </div>
   {/* La banniere des tags Line */}
   <div className={styles.tagfilterbar}>

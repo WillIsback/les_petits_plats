@@ -6,6 +6,8 @@ import FilterSelector from "@components/FilterSelector/FilterSelector";
 import { recettes } from "@data/recipes.json";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState, useCallback, useEffect, useMemo } from "react";
+import { useSearchParams } from 'next/navigation'
+
 
 export default function Home() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -13,6 +15,12 @@ export default function Home() {
       appareils: [],
       ustensiles: []
   });
+  const [recipeFound, setRecipeFound] = useState(recettes);
+  const [recetteNotFound, setRecetteNodFound] = useState(false);
+
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
+  // console.log("Search param:", search);
 
   // ajout d'un item dans la selection
   const handleAddFilter = (category, item) => {
@@ -48,14 +56,52 @@ export default function Home() {
     });
   };
 
+  /*   Le système recherche des recettes correspondant à l’entrée utilisateur (des mots ou groupes de lettres) dans (OU):
+        - le titre
+        - les ingrédients 
+        - description
 
+        Il faut donc a partir des trois premieres lettres ou un groupe de mot faire un match pour filtrer out les recettes qui ne correspondent pas a la recherche.
+  */
+  useEffect(() => {
+    if(search && search.length > 0){
+      // Normaliser la recherche
+      const normalizeSearch = (text) => text.toLowerCase().trim();
+      // Vérifier si une recette correspond
+      const recipeMatches = (recette, searchTerm) => {
+        const inTitle = recette.name.toLowerCase().includes(searchTerm);
+        const inIngredients = recette.ingredients.some(ing => 
+          ing.ingredient.toLowerCase().includes(searchTerm)
+        );
+        const inDescription = recette.description.toLowerCase().includes(searchTerm);
+        return inTitle || inIngredients || inDescription; // OU logique
+      };
+
+      // Filtrer les recettes
+      const filteredRecipes = recettes.filter(recette => recipeMatches(recette, normalizeSearch(search)));
+      // console.log("filteredRecipes : ", filteredRecipes)
+      if(filteredRecipes.length > 0){
+        setRecetteNodFound(false);
+      }
+      else{
+        setRecetteNodFound(true);
+      }
+      setRecipeFound(filteredRecipes);
+    }
+    else{setRecipeFound(recettes); setRecetteNodFound(false);};
+  },[search]);
+
+  /*
+    Recherche affinée par catégories avec tag selection dans une logique ET exhaustif
+  */
   // Est-ce que la recette contient TOUTES les catégories sélectionnées ?
   const allRecettes = useMemo(() => {
-    return recettes.filter((recette) => {
+    const recettesFound = recipeFound;
+    return recettesFound.filter((recette) => {
       // Vérifier TOUS les ingrédients sélectionnés
       const hasAllIngredients = selectedFilters.ingredients.length === 0 || 
         selectedFilters.ingredients.every(selectedIng =>
-          recette.ingredients.some(recipeIng => recipeIng.ingredient === selectedIng)
+          recette.ingredients.some(recipeIng => recipeIng.ingredient.toLowerCase() === selectedIng.toLowerCase())
         );
 
       // Vérifier TOUS les appareils sélectionnés
@@ -73,19 +119,18 @@ export default function Home() {
         );
 
       // Retourner true SEULEMENT si TOUTES les conditions sont remplies
-      return hasAllIngredients && hasAllAppliances && hasAllUstensils;
+      const result = hasAllIngredients && hasAllAppliances && hasAllUstensils ;
+      // console.log('categories filter result : ', result);
+      return result;
     });
-  }, [selectedFilters]);
+  }, [selectedFilters, recipeFound]);
 
-  // Réinitialiser l'affichage quand les filtres changent
-  useEffect(() => {
-    setDisplayed(allRecettes.slice(0, BATCH_SIZE));
-  }, [allRecettes]);
 
   const BATCH_SIZE = 12;
 
   const [displayed, setDisplayed] = useState([]);
-  
+
+  // Réinitialiser l'affichage quand les filtres changent
   useEffect(() => {
     setDisplayed(allRecettes.slice(0, BATCH_SIZE));
   }, [allRecettes]);
@@ -96,14 +141,13 @@ export default function Home() {
       return [...prev, ...nextBatch];
     });
   }, [allRecettes]);
-
+  // console.log(recetteNotFound)
   const hasMore = displayed.length < allRecettes.length;
-
   return (
     <div className={styles.page}>
       <section className={styles.filterbar}>
         <FilterSelector 
-          recettes={recettes}
+          recettes={allRecettes}
           selectedFilters={selectedFilters}
           onAddFilter={handleAddFilter}
           onRemoveFilter={handleRemoveFilter}
@@ -121,9 +165,11 @@ export default function Home() {
             <CardRecette
               key={recette.id}
               {...recette}
+              searchContext={search || ''}
             />
           ))}
         </InfiniteScroll>
+        <p className={styles.errorMessage}>{recetteNotFound && "Aucune recette trouvées ! 😭"}</p>
       </section>
     </div>
   );
