@@ -15,6 +15,16 @@
     object-fit: cover;
 }
 
+.timer{
+    display: flex;
+    padding: 5px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 14px;
+    background: var(--Yellow, #FFD15B);
+    width: fit-content;
+}
 .article {
     display : flex;
     flex-direction: column;
@@ -60,4 +70,13 @@
 }
 .recette_description li {
     padding-left: 15px;
+}
+
+.recette_description aside {
+    color: var(--Grey, #7A7A7A);
+    font-family: var(--font-manrope);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }

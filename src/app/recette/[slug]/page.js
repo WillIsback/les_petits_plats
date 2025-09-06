@@ -1,6 +1,7 @@
 import { recettes } from "@data/recipes.json";
 import styles from "./page.module.css";
 import { notFound } from 'next/navigation'
+import { Fragment } from 'react';
 
 
 async function fetchRecette(slug) {
@@ -19,8 +20,6 @@ export default async function Recette({ params }) {
     
   const imgpath = "/images/recipes/"
   const { image, name, servings, ingredients, time, description, appliance, ustensils} = recette;
-  const splitedDescription = description.split('.');
-  console.log(splitedDescription);
 
   return (
     <main className={styles.main}>
@@ -29,35 +28,40 @@ export default async function Recette({ params }) {
       </section>
       <article className={styles.article}>
         <h2>{name}</h2>
-        <section><h3>Temps de Préparation</h3><span>{time}min</span></section>
+        <section><h3>Temps de Préparation</h3><span className={styles.timer}>{time}min</span></section>
         <section><h3>Ingrédients</h3>
         <ul className={styles.liste}>
-          {ingredients.map(({ ingredient, quantity, unit, idx }) => {
-            return <li><h4>{ingredient}</h4> {!unit ? <p>{quantity}</p> : <span>{quantity} {unit}</span>}</li>
+          {ingredients.map(({ ingredient, quantity, unit }, index) => {
+            return <li key={`ingredient_${index}`}>
+                <h4>{ingredient}</h4> {!unit ? <p>{quantity}</p> : <span>{quantity} {unit}</span>}
+              </li>
           })}
         </ul>
         </section>
         <section><h3>Ustensiles nécessaires</h3>
           <ul className={styles.liste}>
-            {ustensils.map((ust) => {
-              return <li>{ust}</li>
+            {ustensils.map((ust, index) => {
+              return <li key={index}>{ust}</li>
             })}
           </ul>
         </section>
         <section><h3>Appareils nécessaires</h3><p>{appliance}</p></section>
         <section><h3>Recette</h3>
-          <ul className={styles.recette_description}>
+          <ul className={styles.recette_description} aria-labelledby="recette-description"> 
             {description.split('.').map((instruction, idx) => {
-              return <div aria-labelledby="recette-description">
-                <h3>{`- ${idx+1}`}</h3>
-                <li>{`${instruction}.`}</li>
-              </div>
-            }
+              return <Fragment key={idx}>
+                <li key={idx}>
+                  {instruction.trim()[0] === '(' ? 
+                    <aside>Remarque : {instruction.trim().slice(1)}</aside> : 
+                    <><h3>Étape {idx+1}</h3><span>{instruction}</span></>
+                  }
+                </li>
+              </Fragment>
+              }
             )}
           </ul>
         </section>
       </article>
-
     </main>
   );
 }
