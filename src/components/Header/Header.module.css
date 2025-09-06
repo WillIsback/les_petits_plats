@@ -20,6 +20,7 @@
     top: 51px;
     left: 69px; 
     gap: 4.6px;
+    cursor: pointer;
 }
 
 .tagline{
@@ -36,3 +37,21 @@
     font-size: 44px;
 }
 
+
+.errorNotfound h2 {
+    color: var(--Yellow, #FFD15B);
+    text-align: center;
+    font-family: var(--font-anton);
+    font-size: 44px;
+}
+
+.errorNotfound h3 {
+    color: #FFF;
+    text-align: center;
+    font-family: var(--font-anton);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: none;
+}

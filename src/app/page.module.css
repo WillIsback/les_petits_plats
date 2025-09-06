@@ -13,6 +13,7 @@
 }
 .recettesection{
   display: flex;
+  background: #ECECEC;
 
 }
 .recettegrid {
@@ -22,7 +23,11 @@
   width: 100%;
   column-gap: 48px;
   row-gap: 66px;
+  background: #ECECEC;
+  border-radius: 30px;
+  border: 0px;
 }
+ 
 
 .filterbar {
   margin-top: 60px;
@@ -36,4 +41,13 @@
   font-family: var(--font-manrope);
   font-size: 21px;
   font-weight: 400;
+}
+
+.cardLink {
+  text-decoration: none;
+  transition: box-shadow .1s;
+}
+
+.cardLink:hover {
+  box-shadow: 0 11px 22px rgba(33,33,33,.2); 
 }

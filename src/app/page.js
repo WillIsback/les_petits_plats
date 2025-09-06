@@ -7,6 +7,7 @@ import { recettes } from "@data/recipes.json";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -162,11 +163,17 @@ export default function Home() {
           loader={<h4>Chargement...</h4>}
         >
           {displayed.map((recette) => (
-            <CardRecette
-              key={recette.id}
-              {...recette}
-              searchContext={search || ''}
-            />
+            <Link 
+              key={`link_${recette.id}`} 
+              href={`/recette/${recette.slug}`} 
+              className={styles.cardLink}
+            >
+              <CardRecette
+                key={recette.id}
+                {...recette}
+                searchContext={search || ''}
+              />
+            </Link>
           ))}
         </InfiniteScroll>
         <p className={styles.errorMessage}>{recetteNotFound && "Aucune recette trouvées ! 😭"}</p>

@@ -1,0 +1,63 @@
+.main  {
+    display: flex;
+    padding: 70px 90px;
+    align-items: flex-start;
+    gap: 82px;
+    align-self: stretch;
+    background: #FFF;
+}
+
+.image img{
+    border-radius: 21px;
+    width : 606px;
+    height: 738px;
+    box-sizing: border-box;
+    object-fit: cover;
+}
+
+.article {
+    display : flex;
+    flex-direction: column;
+    gap: 32px;
+
+}
+
+.article section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.liste {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 30px
+}
+
+.liste li {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 200px;
+    max-width: 300px;
+}
+
+.liste li span {
+    color: var(--Grey, #7A7A7A);
+    font-family: var(--font-manrope);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.article section p {
+    text-align: justify;
+}
+
+.recette_description {
+    list-style: none;
+}
+.recette_description li {
+    padding-left: 15px;
+}
